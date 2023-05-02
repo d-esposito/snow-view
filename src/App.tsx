@@ -1,4 +1,5 @@
 import { LayerSelectBar, MapView } from './components';
+import { LayerProvider } from './contexts';
 import { LayerToggleButtonProps } from './types';
 
 import './App.css'
@@ -16,10 +17,10 @@ function App() {
   ];
 
   return (
-    <div className='site-wrapper'>
+    <LayerProvider>
       <LayerSelectBar buttons={layers}/>
       <MapView />
-    </div>
+    </LayerProvider>    
   )
 }
 
