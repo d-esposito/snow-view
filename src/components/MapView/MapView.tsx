@@ -1,10 +1,15 @@
-import React from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import React, { useContext } from 'react';
+import { MapContainer, TileLayer, ImageOverlay } from 'react-leaflet';
+import { LayerContext } from '../../contexts';
+import Image from '../../assets/trollface.png';
 
 import './MapView.css';
 import 'leaflet/dist/leaflet.css';
 
 const MapView: React.FC = () => {
+    const { layerNames } = useContext(LayerContext);
+    const coloradoBounds = [[41.00000, -109.05000], [36.99999, -102.04000]];
+
     return (
         <MapContainer 
             center={[38.997222, -105.547222]} 
@@ -17,6 +22,9 @@ const MapView: React.FC = () => {
             url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
             attribution="Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ"
         />
+        {
+            layerNames.includes('mountain') ? <ImageOverlay url={Image} bounds={coloradoBounds} opacity={0.5} /> : <></>
+        }
         </MapContainer>
     );
 };

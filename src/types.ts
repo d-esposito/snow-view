@@ -1,6 +1,6 @@
 export interface LayerToggleButtonProps {
     layerName: string;
-    icon: "mountain" | "radar";
+    icon: LayerNames;
 }
 
-export type LayerNames = 'red' | 'blue';
+export type LayerNames = 'mountain' | 'radar';
